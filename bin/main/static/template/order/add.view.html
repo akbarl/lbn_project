@@ -1,0 +1,104 @@
+<md-dialog add-item-dialog style="width: 100%">
+<form name="order.form">
+<md-dialog-content>
+	<md-toolbar>
+	<h2 class="md-toolbar-tools">
+		<span>{{ 'ORDER_ADD_NEW' | translate }}</span>
+	</h2>
+	</md-toolbar>
+
+		<md-content layout-padding>
+			<div layout="row">
+				<div layout="column">
+					<div>
+						<md-input-container class="md-block"> 
+							<label>{{'ORDER_NAME' | translate}}</label> 
+							<md-icon>account_balance</md-icon>
+							<input ng-model="order.name" type="text" required> 
+						</md-input-container>
+			
+						<md-input-container ng-init="getAllUser()" class="md-block">
+							<label>{{'ORDER_ASSIGNEE_NAME' | translate}}</label> 
+							<md-icon>accessibility</md-icon>
+							<md-select ng-model="order.assigneeId">
+								<md-option ng-repeat="assignee in assigneeList" value="{{assignee.id}}">
+									{{assignee.firstname}}
+								</md-option>
+							</md-select>
+						</md-input-container>
+						
+					</div>
+					<div>
+						<md-input-container ng-init="getAllCustomer()" class="md-block"> 
+							<label>{{'ORDER_CUSTOMER_NAME' | translate}}</label> 
+							<md-icon>account_box</md-icon>
+							<md-select ng-model="order.customerId">
+								<md-option ng-repeat="customer in customers" value="{{customer.id}}">
+									{{customer.name}}
+								</md-option>
+							</md-select>
+						</md-input-container>
+			
+						<md-input-container class="md-block">
+							<label>{{'ORDER_CUSTOMER_COMPANY_NAME' | translate}}</label> 
+							<md-icon>business</md-icon>
+							<md-select ng-model="order.customerId">
+								<md-option ng-repeat="customer in customers" value="{{customer.id}}">
+									{{customer.company}}
+								</md-option>
+							</md-select>
+						</md-input-container>
+					</div>
+					<div>
+						<md-input-container style="margin: 18px 0 0;"> 
+							<label>{{'ORDER_CONTRACT_ID' | translate}}</label> 
+							<md-icon>insert_drive_file</md-icon>
+							<input ng-model="order.contractId" type="text" required> 
+						</md-input-container>
+			
+						<md-input-container style="margin: 18px 0 0;">
+							<label>{{'ORDER_SIGNED_AT' | translate}}</label> 
+							<md-datepicker ng-model="order.signedAt"></md-datepicker>
+						</md-input-container>
+					</div>
+					
+					<md-input-container style="margin: 18px 0 0;">
+						<label>{{'ORDER_NOTE' | translate}}</label> 
+						<md-icon>event_note</md-icon>
+						<input ng-model="order.note" type="text"> 
+					</md-input-container>
+					
+				</div>
+				
+				<div layout="column" flex>
+					<md-input-container style="margin: 18px 0 0;"> 
+						<label>{{'ORDER_NET_PRICE' | translate}}</label> 
+						<md-icon>account_balance_wallet</md-icon>
+						<input ng-model="order.netPrice" type="text" required> 
+					</md-input-container>
+					<div style="margin: 20px 0 16px;">
+						<md-icon>cached</md-icon>  Tiến độ thanh toán 
+						<md-button class="md-icon-button" ng-click="addPayment()">
+							<md-icon>note_add</md-icon>
+						</md-button>
+					</div>
+					
+					<div layout="row">
+						<md-input-container ng-repeat="payment in paymentList" style="margin: 18px 0 0;"> 
+							<label>{{'ORDER_PHASE_'+($index+1) | translate}} (đơn vị: %)</label> 
+							<md-icon>trending_up</md-icon>
+							<input ng-model="payment.percent" type="text" required> 
+						</md-input-container>
+					</div>
+				</div>
+				
+			</div>
+		</md-content>
+	
+</md-dialog-content>
+<div class="md-actions">
+	<md-button class="md-raised md-primary" ng-click="addOrder()" type="submit">Thêm</md-button>
+	<md-button class="md-raised md-primary" ng-click="cancel()">Hủy</md-button>
+</div>
+</form>
+</md-dialog>

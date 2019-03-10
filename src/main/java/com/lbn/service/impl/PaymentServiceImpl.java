@@ -37,4 +37,9 @@ public class PaymentServiceImpl implements PaymentService{
 	public List<Payment> findAllByOrderId(int orderId) {
 		return m_paymentRepo.findAllByOrderId(orderId);
 	}
+
+	@Override
+	public void deleteByOrderId(int orderId) {
+		m_paymentRepo.deleteByOrderId(orderId);
+	}
 }

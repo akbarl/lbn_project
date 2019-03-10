@@ -1,0 +1,30 @@
+
+<div layout="row" layout-align="center center" style="min-height: 70%">
+  <form id="loginForm" flex="30">
+    <div layout="column" class="loginBox md-whiteframe-z1">
+      <md-toolbar>
+        <h2 class="md-toolbar-tools"><span>Login</span></h2>
+      </md-toolbar>
+      <md-content layout-padding>
+        <md-card ng-if="error" md-colors="{color:'warn'}">
+          {{message}}
+        </md-card>
+        <md-input-container style="margin: 18px 0 0;">
+          <label>Username</label>
+          <input ng-model="username" required>
+        </md-input-container>
+        <md-input-container style="margin: 18px 0 0;">
+          <label>Password</label>
+          <input ng-model="password" type="password" required>
+        </md-input-container>
+        <md-input-container style="margin: 0 0;">
+          <md-checkbox ng-model="rememberMe" required>
+          Remember me
+          </md-checkbox>
+        </md-input-container>
+      </md-content>
+      <md-button class="md-raised md-primary" ng-click="handleLogin()" type="submit">Login</md-button>
+      
+    </div>
+  </form>
+</div>

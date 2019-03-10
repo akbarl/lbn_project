@@ -2,25 +2,18 @@ package com.lbn.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 import com.lbn.client.OrderVO;
 
 @Entity
 @Table(name = "orders")
-@SecondaryTable(name = "payment", pkJoinColumns={@PrimaryKeyJoinColumn(name="order_id", referencedColumnName="id")})
 public class Order {
 	
 	@Id
@@ -44,9 +37,6 @@ public class Order {
 	private int status;
 	@Column(name = "net_price")
 	private BigDecimal netPrice;
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name = "order_id")
-	private Set<Payment> paymentList;
 	@Column
 	private String note;
 	@Column(name = "created_at", updatable = false)
@@ -157,16 +147,7 @@ public class Order {
 	public String toString() {
 		return "Order [id=" + id + ", assigneeId=" + assigneeId + ", createdBy=" + createdBy + ", customerId="
 				+ customerId + ", name=" + name + ", contractId=" + contractId + ", signedAt=" + signedAt
-				+ ", deliveredDate=" + deliveredDate + ", status=" + status + ", netPrice=" + netPrice
-				+ ", paymentList=" + getPaymentList() + ", note=" + note + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
-	}
-
-	public Set<Payment> getPaymentList() {
-		return paymentList;
-	}
-
-	public void setPaymentList(Set<Payment> paymentList) {
-		this.paymentList = paymentList;
+				+ ", deliveredDate=" + deliveredDate + ", status=" + status + ", netPrice=" + netPrice + ", note="
+				+ note + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 }

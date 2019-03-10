@@ -9,4 +9,5 @@ public interface PaymentService {
 	public boolean saveBulkPayment(List<Payment> payments);
 	public Payment findById(int id);
 	public List<Payment> findAllByOrderId(int orderId);
+	public void deleteByOrderId(int orderId);
 }

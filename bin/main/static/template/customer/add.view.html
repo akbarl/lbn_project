@@ -1,0 +1,43 @@
+<md-dialog add-item-dialog>
+<form name="customer.form">
+<md-dialog-content>
+	<md-toolbar>
+	<h2 class="md-toolbar-tools">
+		<span>{{ 'CUSTOMER_ADD_NEW' | translate }}</span>
+	</h2>
+	</md-toolbar>
+	
+		<div layout="column">
+			<md-content layout-padding> <md-card ng-if="error"
+				md-colors="{color:'warn'}"> {{message}} </md-card>
+			<div layout="row">
+				<md-input-container style="margin: 18px 0 0;" flex>
+				<label>{{'CUSTOMER_NAME' | translate}}</label> <input
+					ng-model="customer.name" type="text" required> </md-input-container>
+			</div>
+			<div layout="row">
+				<md-input-container style="margin: 18px 0 0;" flex>
+				<label>{{'CUSTOMER_COMPANY' | translate}}</label> <input
+					ng-model="customer.company" type="text" required> </md-input-container>
+			</div>
+			<div>
+				<md-input-container style="margin: 18px 0 0;"> <label>{{'CUSTOMER_ADDRESS'
+					| translate}}</label> <input ng-model="customer.address" type="text"
+					required> </md-input-container>
+	
+				<md-input-container style="margin: 18px 0 0;">
+				<label>{{'CUSTOMER_PHONE' | translate}}</label> <input
+					ng-model="customer.phone" type="text" required> </md-input-container>
+			</div>
+	
+	
+			</md-content>
+		</div>
+	
+</md-dialog-content>
+<div class="md-actions">
+	<md-button class="md-raised md-primary" ng-click="addCustomer()" type="submit">Thêm</md-button>
+	<md-button class="md-raised md-primary" ng-click="cancel()">Hủy</md-button>
+</div>
+</form>
+</md-dialog>

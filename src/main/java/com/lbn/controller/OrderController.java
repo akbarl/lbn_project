@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,11 +46,27 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/order", method = RequestMethod.POST)
+	@Transactional
 	public ResponseEntity<Void> createOrder(@RequestBody OrderVO orderVO) {
 		Order order = new Order(orderVO);
-		order.setPaymentList(new HashSet<Payment>(orderVO.getPaymentList()));
-		m_orderService.saveOrder(order);
+		int orderId = m_orderService.saveOrder(order);
+		for(Payment payment : orderVO.getPaymentList()) {
+			payment.setOrderId(orderId);
+		}
+		m_paymentService.saveBulkPayment(orderVO.getPaymentList());
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/order/{id}", method = RequestMethod.DELETE)
+	@Transactional
+	public ResponseEntity<Void> deleteOrderById(@PathVariable("id") int id) {
+		Order order = m_orderService.findById(id);
+		if (order != null) {
+			m_paymentService.deleteByOrderId(order.getId());
+			m_orderService.deleteById(order.getId());
+			return new ResponseEntity<>(HttpStatus.OK); 
+		}
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 	}
 	
 	@RequestMapping(value = "/order", method = RequestMethod.GET)

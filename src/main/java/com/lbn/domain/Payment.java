@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +18,8 @@ public class Payment {
 	private int id;
 	@Column
 	private int percent;
+	@Column(name="order_id")
+	private int orderId;
 	@Column
 	private boolean paid;
 	@Column(name = "paid_date")
@@ -28,9 +28,6 @@ public class Payment {
 	private String invoiceNo;
 	@Column
 	private String note;
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-	private Order order;
 	@Column(name = "created_at", updatable = false)
 	private Date createdAt;
 	@Column(name = "updated_at", updatable = false)
@@ -84,5 +81,16 @@ public class Payment {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+	@Override
+	public String toString() {
+		return "Payment [id=" + id + ", percent=" + percent + ", orderId=" + orderId + ", paid=" + paid + ", paidDate="
+				+ paidDate + ", invoiceNo=" + invoiceNo + ", note=" + note + ", createdAt=" + createdAt + ", updatedAt="
+				+ updatedAt + "]";
+	}
 }
