@@ -56,6 +56,6 @@ CREATE TABLE IF NOT EXISTS payment (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `address`, `phone`, `email`, `enabled`, `usertype`, `created_at`) VALUES (NULL, 'admin', '$2a$04$NHFnUm9cNXsXya3STBFi2eM5kH5iBQWzBRAXbeo6sb2jDuP7Xv4pK', 'Anh', 'Nguyễn', 'HCMC', '0828997267', 'ntanh5239@gmail.com', '1', '2', '2019-01-28 20:43:19');
+INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `address`, `phone`, `email`, `enabled`, `usertype`, `created_at`) VALUES (NULL, 'admin', '$2a$04$NHFnUm9cNXsXya3STBFi2eM5kH5iBQWzBRAXbeo6sb2jDuP7Xv4pK', 'Anh', 'Nguyễn', 'HCMC', '0828997xxx', 'akbarl@live.com', '1', '2', '2019-01-28 20:43:19');
 
 INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `address`, `phone`, `email`, `enabled`, `usertype`, `created_at`) VALUES (NULL, 'user', '$2a$04$NHFnUm9cNXsXya3STBFi2eM5kH5iBQWzBRAXbeo6sb2jDuP7Xv4pK', 'firstname', 'lastname', 'KH', '01234', 'kh@gmail.com', '1', '1', '2019-01-28 20:43:35');
