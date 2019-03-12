@@ -8,6 +8,8 @@
   "BUTTON_LANG_DE": "German",
   "BUTTON_LANG_EN": "English",
   "WELCOME" : "Chào mừng",
+  "CANCEL" : "Hủy",
+  "ADD" : "Thêm",
   
   "DASHBOARD_PAGE" : "Trang quản trị",
   
@@ -20,6 +22,7 @@
   "PERSONAL_PHONE" : "Số điện thoại",
   
   "CUSTOMER_PAGE" : "Trang khách hàng",
+  
   "CUSTOMER_ID" : "Mã khách hàng",
   "CUSTOMER_LIST" : "Danh sách khách hàng",
   "CUSTOMER_NAME" : "Tên khách hàng",
@@ -30,6 +33,7 @@
   "CUSTOMER_ADD_NEW" : "Thêm khách hàng",
   
   "ORDER_PAGE" : "Trang đơn hàng",
+  
   "ORDER_ID" : "Mã đơn hàng",
   "ORDER_ASSIGNEE_ID" : "Mã người thực hiện",
   "ORDER_ASSIGNEE_NAME" : "Người thực hiện",
@@ -44,6 +48,8 @@
   "ORDER_DELIVERED_DATE" : "Ngày giao hàng",
   "ORDER_STATUS" : "Tình trạng",
   "ORDER_NET_PRICE" : "Tổng giá trị (chưa bao gồm VAT)",
+  "ORDER_PAYMENT_LIST_VALID" : "Tiến độ thanh toán là hợp lệ",
+  "ORDER_PAYMENT_LIST_INVALID" : "Tổng các giai đoạn nên bằng 100%",
   "ORDER_ADD_NEW" : "Thêm đơn hàng",
   "ORDER_NOTE" : "Ghi chú (Nếu có)",
   "ORDER_PAYMENT_SCHEDULE" : "Tiến độ thanh toán",

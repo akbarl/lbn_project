@@ -7,7 +7,7 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 	  $scope.limitOptions = [5, 10, 15];
 	  $scope.paymentSchedules = [1, 2, 3];
 	  $scope.maxPaymentList = 3;
-	  $scope.paymentList = [{"percent" : "50"}];
+	  $scope.paymentList = [{"percent" : 50}];
 	  
 	  $scope.options = {
 	    rowSelection: true,
@@ -78,12 +78,36 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 	
 	$scope.addPayment = function() {
 		if($scope.paymentList.length < 3) {
-			$scope.paymentList.push({"phase": ""});
+			$scope.paymentList.push({"percent": 0});
 		}
 	}
 	
 	$scope.removePayment = function() {
 		
+	}
+	
+	$scope.isAbleToCalculate = function() {
+		if($scope.order.netPrice > 0 && $scope.paymentList.length > 0 && $scope.paymentList[0].percent > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	$scope.checkPaymentList = function() {
+		var total = 0;
+		if($scope.paymentList.length > 0) {
+			for(var i = 0 ; i < $scope.paymentList.length ; i ++) {
+				total += $scope.paymentList[i].percent;
+			}
+			
+			if(total == 100) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		console.log(total);
 	}
 	
 	$scope.cancel = $mdDialog.cancel;
