@@ -32,7 +32,7 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 	$scope.getAllOrder = function () {
 		OrderService.query($scope.query).$promise.then(function(response){
 			$scope.orders = response;
-			console.log($scope.orders)
+			console.log($scope.orders);
 		});
 	}
 	
