@@ -40,9 +40,9 @@ public class OrderController {
 	private UserService m_userService;
 	
 	@RequestMapping(value = "/order/{id}", method = RequestMethod.GET)
-	public Order getOrderById(@PathVariable("id") int id) {
-		System.out.println(m_orderService.findById(id));
-		return m_orderService.findById(id);
+	public OrderVO getOrderById(@PathVariable("id") int id) {
+		Order order = m_orderService.findById(id);
+		return new OrderVO(m_orderService.findById(id), m_paymentService.findAllByOrderId(order.getId()));
 	}
 	
 	@RequestMapping(value = "/order", method = RequestMethod.POST)

@@ -10,6 +10,8 @@
   "WELCOME" : "Chào mừng",
   "CANCEL" : "Hủy",
   "ADD" : "Thêm",
+  "UPDATE" : "Cập nhật",
+  "UNIT_CURRENCY" : "VNĐ",
   
   "DASHBOARD_PAGE" : "Trang quản trị",
   
@@ -51,6 +53,7 @@
   "ORDER_PAYMENT_LIST_VALID" : "Tiến độ thanh toán là hợp lệ",
   "ORDER_PAYMENT_LIST_INVALID" : "Tổng các giai đoạn nên bằng 100%",
   "ORDER_ADD_NEW" : "Thêm đơn hàng",
+  "ORDER_UPDATE" : "Cập nhật đơn hàng",
   "ORDER_NOTE" : "Ghi chú (Nếu có)",
   "ORDER_PAYMENT_SCHEDULE" : "Tiến độ thanh toán",
   "ORDER_PHASE_1" : "Giai đoạn 1",

@@ -52,6 +52,14 @@
                 <td md-cell>{{order.signedAt | date : "dd/MM/y"}}</td>
                 <td md-cell>{{order.deliveredDate | date : "dd/MM/y"}}</td>
                 <td md-cell>{{getStatus(order.status) | translate}}</td>
+                <td md-cell>
+                   <md-button class="md-icon-button" ng-click="viewOrder()">
+                     <md-icon>pageview</md-icon>
+                   </md-button>
+                   <md-button class="md-icon-button" ng-click="editOrder(order.id)">
+                     <md-icon>create</md-icon>
+                   </md-button>
+                </td>
               </tr>
             </tbody>
           </table>

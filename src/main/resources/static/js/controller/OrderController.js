@@ -7,12 +7,14 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 	  $scope.limitOptions = [5, 10, 15];
 	  $scope.paymentSchedules = [1, 2, 3];
 	  $scope.maxPaymentList = 3;
-	  $scope.paymentList = [{"percent" : 50}];
+	  if($scope.paymentList == undefined) {
+		  $scope.paymentList = [{"percent" : 50}];
+	  }
 	  
 	  $scope.options = {
 	    rowSelection: true,
 	    multiSelect: true,
-	    autoSelect: true,
+	    autoSelect: false,
 	    decapitate: false,
 	    largeEditDialog: false,
 	    boundaryLinks: false,
@@ -63,11 +65,10 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 	};
 	
 	$scope.addOrder = function() {
-		$scope.order.createdBy = $localStorage.currentUser.userId;
-		$scope.order.status = 1;
-		$scope.order.paymentList = $scope.paymentList;
-		console.log($scope.order);
-		if($scope.order.form.$valid) {
+		if($scope.order.form.$valid && $scope.checkPaymentList()) {
+			$scope.order.createdBy = $localStorage.currentUser.userId;
+			$scope.order.status = 1;
+			$scope.order.paymentList = $scope.paymentList;
 			OrderService.save($scope.order, success)
 		}
 	}
@@ -80,10 +81,6 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 		if($scope.paymentList.length < 3) {
 			$scope.paymentList.push({"percent": 0});
 		}
-	}
-	
-	$scope.removePayment = function() {
-		
 	}
 	
 	$scope.isAbleToCalculate = function() {
@@ -107,7 +104,6 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 				return false;
 			}
 		}
-		console.log(total);
 	}
 	
 	$scope.cancel = $mdDialog.cancel;
@@ -136,5 +132,32 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 	
 	$scope.refresh = function() {
 		$scope.getAllOrder();
+	}
+	
+	$scope.viewOrder = function() {
+		
+	}
+	
+	$scope.editOrder = function(id) {
+		OrderService.get({id: id}).$promise.then(function(response){
+			$scope.order = response;
+			$scope.paymentList = response.paymentList;
+			$mdDialog.show({
+			      clickOutsideToClose: true,
+			      controller: 'OrderController',
+			      controllerAs: 'ctrl',
+			      focusOnOpen: false,
+			      targetEvent: event,
+			      templateUrl: "template/order/edit.view.html",
+			      scope: $scope,
+			      preserveScope: true
+			}).then($scope.getAllOrder);
+		});
+	}
+	
+	$scope.updateOrder = function() {
+		if($scope.order.form.$valid && $scope.checkPaymentList()) {
+			OrderService.save($scope.order, success)
+		}
 	}
 }
