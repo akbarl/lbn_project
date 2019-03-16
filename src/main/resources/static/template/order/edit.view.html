@@ -16,7 +16,7 @@
 							<input ng-model="order.name" type="text" required> 
 						</md-input-container>
 			
-						<md-input-container ng-init="getAllUser()" class="md-block">
+						<md-input-container ng-if="!dialogClosed" ng-init="getAllUser()" class="md-block">
 							<label>{{'ORDER_ASSIGNEE_NAME' | translate}}</label> 
 							<md-icon>accessibility</md-icon>
 							<md-select ng-model="order.assigneeId">
@@ -28,7 +28,7 @@
 						
 					</div>
 					<div>
-						<md-input-container ng-init="getAllCustomer()" class="md-block"> 
+						<md-input-container ng-if="!dialogClosed" ng-init="getAllCustomer()" class="md-block"> 
 							<label>{{'ORDER_CUSTOMER_NAME' | translate}}</label> 
 							<md-icon>account_box</md-icon>
 							<md-select ng-model="order.customerId">
@@ -38,7 +38,7 @@
 							</md-select>
 						</md-input-container>
 			
-						<md-input-container class="md-block">
+						<md-input-container ng-if="!dialogClosed" class="md-block">
 							<label>{{'ORDER_CUSTOMER_COMPANY_NAME' | translate}}</label> 
 							<md-icon>business</md-icon>
 							<md-select ng-model="order.customerId">

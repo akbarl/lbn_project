@@ -6,7 +6,7 @@
 		<span>{{ 'ORDER_ADD_NEW' | translate }}</span>
 	</h2>
 	</md-toolbar>
-
+{{testData}}
 		<md-content layout-padding>
 			<div layout="row">
 				<div layout="column">
@@ -20,7 +20,7 @@
 						<md-input-container ng-init="getAllUser()" class="md-block">
 							<label>{{'ORDER_ASSIGNEE_NAME' | translate}}</label> 
 							<md-icon>accessibility</md-icon>
-							<md-select ng-model="order.assigneeId">
+							<md-select ng-model="order.assigneeId" required>
 								<md-option ng-repeat="assignee in assigneeList" value="{{assignee.id}}">
 									{{assignee.firstname}}
 								</md-option>
@@ -32,7 +32,7 @@
 						<md-input-container ng-init="getAllCustomer()" class="md-block"> 
 							<label>{{'ORDER_CUSTOMER_NAME' | translate}}</label> 
 							<md-icon>account_box</md-icon>
-							<md-select ng-model="order.customerId">
+							<md-select ng-model="order.customerId" required>
 								<md-option ng-repeat="customer in customers" value="{{customer.id}}">
 									{{customer.name}}
 								</md-option>
@@ -42,7 +42,7 @@
 						<md-input-container class="md-block">
 							<label>{{'ORDER_CUSTOMER_COMPANY_NAME' | translate}}</label> 
 							<md-icon>business</md-icon>
-							<md-select ng-model="order.customerId">
+							<md-select ng-model="order.customerId" required>
 								<md-option ng-repeat="customer in customers" value="{{customer.id}}">
 									{{customer.company}}
 								</md-option>
@@ -91,19 +91,19 @@
 						</md-input-container>
 					</div>
 					<div layout="row" style="margin: 18px 0 18px;">
-						<strong ng-if="!checkPaymentList()">{{'ORDER_PAYMENT_LIST_INVALID' | translate}} <md-icon>warning</md-icon></strong>
-						<strong ng-if="checkPaymentList()">{{'ORDER_PAYMENT_LIST_VALID' | translate}}<md-icon>done</md-icon></strong>
+						<strong ng-if="!checkPaymentList(paymentList)">{{'ORDER_PAYMENT_LIST_INVALID' | translate}} <md-icon>warning</md-icon></strong>
+						<strong ng-if="checkPaymentList(paymentList)">{{'ORDER_PAYMENT_LIST_VALID' | translate}}<md-icon>done</md-icon></strong>
 					</div>
 					
-					<div layout="row">
-						<md-toolbar class = "md-primary md-hue-1" ng-if="isAbleToCalculate()">
+					<div layout="row" ng-if="isAbleToCalculate(order.netPrice, paymentList)">
+						<md-toolbar class = "md-primary md-hue-1">
 							<div class = "md-toolbar-tools">
 								<h2 class = "md-flex">{{'ORDER_NET_PRICE' | translate }}: {{order.netPrice | number}} VNĐ</h2>
 							</div>
 						</md-toolbar>
 					</div>
-					<div layout="row" layout-padding>
-						<p ng-if="isAbleToCalculate()" ng-repeat="payment in paymentList"><strong>{{'ORDER_PHASE_'+($index+1) | translate}}</strong>: {{payment.percent * order.netPrice / 100 | number}} VNĐ</p>
+					<div ng-if="isAbleToCalculate(order.netPrice, paymentList)" layout="row" layout-padding>
+						<p ng-repeat="payment in paymentList"><strong>{{'ORDER_PHASE_'+($index+1) | translate}}</strong>: {{payment.percent * order.netPrice / 100 | number}} VNĐ</p>
 					</div>
 				</div>
 				

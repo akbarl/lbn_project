@@ -56,7 +56,7 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 	$scope.addItem = function (event) {
 	    $mdDialog.show({
 	      clickOutsideToClose: true,
-	      controller: 'OrderController',
+	      controller: 'AddOrderController',
 	      controllerAs: 'ctrl',
 	      focusOnOpen: false,
 	      targetEvent: event,
@@ -150,8 +150,10 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 			      targetEvent: event,
 			      templateUrl: "template/order/edit.view.html",
 			      scope: $scope,
-			      preserveScope: true
-			}).then($scope.getAllOrder);
+			      preserveScope: true,
+		          onComplete: function(){$scope.dialogClosed = false;},
+		          onRemoving: function(){$scope.dialogClosed = true;}
+			}).then(success_test)
 		});
 	}
 	
@@ -159,5 +161,9 @@ function OrderController($rootScope, $scope, $location, $localStorage, $http, $m
 		if($scope.order.form.$valid && $scope.checkPaymentList()) {
 			OrderService.save($scope.order, success)
 		}
+	}
+	
+	function success_test() {
+		$mdDialog.hide( alert, "finished" );
 	}
 }

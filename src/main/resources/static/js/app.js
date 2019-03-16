@@ -42,7 +42,7 @@
             .state('order', {
                 url: '/order',
                 templateUrl: 'template/order/index.view.html',
-                controller: 'OrderController',
+                controller: 'IndexOrderController',
                 controllerAs: 'vm'
             });
         $translateProvider.useStaticFilesLoader({
