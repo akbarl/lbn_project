@@ -49,7 +49,7 @@
                 <td md-cell>{{order.contractId}}</td>
                 <td md-cell>{{order.signedAt | date : "dd/MM/y"}}</td>
                 <td md-cell>{{order.deliveredDate | date : "dd/MM/y"}}</td>
-                <td md-cell>{{getStatus(order.status) | translate}}</td>
+                <td md-cell>{{helpers.getFriendlyNameOfOrderStatus(order.status) | translate}}</td>
                 <td md-cell>
                    <md-button class="md-icon-button" ng-click="viewOrder()">
                      <md-icon>pageview</md-icon>

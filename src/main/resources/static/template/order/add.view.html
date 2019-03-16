@@ -6,7 +6,6 @@
 		<span>{{ 'ORDER_ADD_NEW' | translate }}</span>
 	</h2>
 	</md-toolbar>
-{{testData}}
 		<md-content layout-padding>
 			<div layout="row">
 				<div layout="column">
@@ -91,18 +90,18 @@
 						</md-input-container>
 					</div>
 					<div layout="row" style="margin: 18px 0 18px;">
-						<strong ng-if="!checkPaymentList(paymentList)">{{'ORDER_PAYMENT_LIST_INVALID' | translate}} <md-icon>warning</md-icon></strong>
-						<strong ng-if="checkPaymentList(paymentList)">{{'ORDER_PAYMENT_LIST_VALID' | translate}}<md-icon>done</md-icon></strong>
+						<strong ng-if="!helpers.checkPaymentList(paymentList)">{{'ORDER_PAYMENT_LIST_INVALID' | translate}} <md-icon>warning</md-icon></strong>
+						<strong ng-if="helpers.checkPaymentList(paymentList)">{{'ORDER_PAYMENT_LIST_VALID' | translate}}<md-icon>done</md-icon></strong>
 					</div>
 					
-					<div layout="row" ng-if="isAbleToCalculate(order.netPrice, paymentList)">
+					<div layout="row" ng-if="helpers.isAbleToCalculate(order.netPrice, paymentList)">
 						<md-toolbar class = "md-primary md-hue-1">
 							<div class = "md-toolbar-tools">
 								<h2 class = "md-flex">{{'ORDER_NET_PRICE' | translate }}: {{order.netPrice | number}} VNĐ</h2>
 							</div>
 						</md-toolbar>
 					</div>
-					<div ng-if="isAbleToCalculate(order.netPrice, paymentList)" layout="row" layout-padding>
+					<div ng-if="helpers.isAbleToCalculate(order.netPrice, paymentList)" layout="row" layout-padding>
 						<p ng-repeat="payment in paymentList"><strong>{{'ORDER_PHASE_'+($index+1) | translate}}</strong>: {{payment.percent * order.netPrice / 100 | number}} VNĐ</p>
 					</div>
 				</div>

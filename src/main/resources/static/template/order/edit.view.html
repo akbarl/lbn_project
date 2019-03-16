@@ -90,19 +90,19 @@
 						</md-input-container>
 					</div>
 					<div layout="row" style="margin: 18px 0 18px;">
-						<strong ng-if="!checkPaymentList()">{{'ORDER_PAYMENT_LIST_INVALID' | translate}} <md-icon>warning</md-icon></strong>
-						<strong ng-if="checkPaymentList()">{{'ORDER_PAYMENT_LIST_VALID' | translate}}<md-icon>done</md-icon></strong>
+						<strong ng-if="!helpers.checkPaymentList(order.paymentList)">{{'ORDER_PAYMENT_LIST_INVALID' | translate}} <md-icon>warning</md-icon></strong>
+						<strong ng-if="helpers.checkPaymentList(order.paymentList)">{{'ORDER_PAYMENT_LIST_VALID' | translate}}<md-icon>done</md-icon></strong>
 					</div>
 					
 					<div layout="row">
-						<md-toolbar class = "md-primary md-hue-1" ng-if="isAbleToCalculate()">
+						<md-toolbar class = "md-primary md-hue-1" ng-if="helpers.isAbleToCalculate(order.netPrice, order.paymentList)">
 							<div class = "md-toolbar-tools">
 								<h2 class = "md-flex">{{'ORDER_NET_PRICE' | translate }}: {{order.netPrice | number}} {{'UNIT_CURRENCY' | translate}}</h2>
 							</div>
 						</md-toolbar>
 					</div>
-					<div layout="row" layout-padding>
-						<p ng-if="isAbleToCalculate()" ng-repeat="payment in paymentList"><strong>{{'ORDER_PHASE_'+($index+1) | translate}}</strong>: {{payment.percent * order.netPrice / 100 | number}} {{'UNIT_CURRENCY' | translate}}</p>
+					<div ng-if="helpers.isAbleToCalculate(order.netPrice, order.paymentList)" layout="row" layout-padding>
+						<p ng-repeat="payment in order.paymentList"><strong>{{'ORDER_PHASE_'+($index+1) | translate}}</strong>: {{payment.percent * order.netPrice / 100 | number}} {{'UNIT_CURRENCY' | translate}}</p>
 					</div>
 				</div>
 				

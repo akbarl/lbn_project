@@ -1,6 +1,7 @@
 app.controller("AddOrderController", AddOrderController);
 
-function AddOrderController($scope, UserService, CustomerService, OrderService, $mdDialog, $localStorage) {
+function AddOrderController($rootScope, $scope, UserService, CustomerService, OrderService, $mdDialog, $localStorage) {
+	$scope.helpers = $rootScope.helpers;
 	$scope.cancel = $mdDialog.cancel;
 	$scope.paymentList = [{"percent" : 50}];
 	
@@ -26,7 +27,7 @@ function AddOrderController($scope, UserService, CustomerService, OrderService, 
 	};
 	
 	$scope.addOrder = function() {
-		if($scope.order.form.$valid && $scope.checkPaymentList($scope.paymentList)) {
+		if($scope.order.form.$valid && checkPaymentList($scope.paymentList)) {
 			$scope.order.createdBy = $localStorage.currentUser.userId;
 			$scope.order.status = 1;
 			$scope.order.paymentList = $scope.paymentList;
@@ -34,17 +35,13 @@ function AddOrderController($scope, UserService, CustomerService, OrderService, 
 		}
 	}
 	
-	$scope.isAbleToCalculate = isAbleToCalculate;
-	
-	$scope.checkPaymentList = checkPaymentList;
-	
 	$scope.addPayment = function() {
 		if($scope.paymentList.length < 3) {
 			$scope.paymentList.push({"percent": 0});
 		}
 	}
 	
-	function success(customer) {
-		$mdDialog.hide(customer);
+	function success() {
+		$mdDialog.hide();
 	}
 }

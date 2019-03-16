@@ -20,3 +20,14 @@ function checkPaymentList(paymentList) {
 		}
 	}
 }
+
+function getFriendlyNameOfOrderStatus(orderStatusId) {
+	var PREFIX = "ORDER_STATUS_";
+	switch(orderStatusId) {
+		case 1:
+			return PREFIX + "OPEN"
+			break;
+		default:
+			return PREFIX + "UNKNOWN";
+	}
+}

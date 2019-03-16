@@ -89,4 +89,10 @@
                }
             }
         });
+        
+        $rootScope.helpers = {
+            isAbleToCalculate: isAbleToCalculate,
+            checkPaymentList: checkPaymentList,
+            getFriendlyNameOfOrderStatus: getFriendlyNameOfOrderStatus
+        };
     }
