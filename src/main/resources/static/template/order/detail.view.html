@@ -1,0 +1,141 @@
+<md-content flex layout-padding>
+	<div layout="row">
+		<div flex="75">
+			<md-card>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">Chi tiết đơn hàng - {{order.id}}
+							<md-button class="md-icon-button" ng-click="editOrder(order.id)">
+								<md-icon>create</md-icon>
+							</md-button>
+						</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<div layout="row" layout-padding>
+						<div flex="70"><md-icon>account_balance</md-icon> {{'ORDER_NAME' | translate}}: {{order.name}}</div>
+						<div flex="30"><md-icon>insert_drive_file</md-icon> {{'ORDER_CONTRACT_ID' | translate}}: {{order.contractId}}</div>
+					</div>
+					<div layout="row" layout-padding>
+						<div flex="70"><md-icon>autorenew</md-icon> {{'ORDER_STATUS' | translate}}: {{helpers.getFriendlyNameOfOrderStatus(order.status) | translate}}</div>
+						<div flex="30"><md-icon>date_range</md-icon> {{'ORDER_SIGNED_AT' | translate}}: {{order.signedAt | date : "dd/MM/y"}}</div>
+					</div>
+					<div layout="row" layout-padding>
+						<div flex="70"></div>
+						<div flex="30"><md-icon>date_range</md-icon> {{'ORDER_DELIVERED_DATE' | translate}}: {{order.deliveredDate != null ? order.deliveredDate : 'Chưa giao' | date : "dd/MM/y"}}</div>
+					</div>
+				</md-card-content>
+			</md-card>
+			
+			<md-card>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">Tiến độ thanh toán
+							<md-button class="md-icon-button" ng-click="editPayment(order.id)">
+								<md-icon>create</md-icon>
+							</md-button>
+						</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<div layout="row" layout-padding>
+						<div ng-repeat="payment in order.paymentList" flex="33">Giai đoạn {{$index+1}} ({{payment.percent}} %)</div>
+					</div>
+					<div layout="row" layout-padding>
+						<div ng-repeat="payment in order.paymentList" flex="33">{{payment.percent * order.netPrice / 100 | number}} {{'UNIT_CURRENCY' | translate}}</div>
+					</div>
+					<div layout="row" layout-padding>
+						<div ng-repeat="payment in order.paymentList" flex="33"><md-icon>{{payment.paid ? 'done' : 'highlight_off'}}</md-icon></div>
+					</div>
+				</md-card-content>
+			</md-card>
+			
+			<md-card>
+				<md-card-content>
+					<div layout="row">
+						<div flex="33">
+							Tổng giá trị: {{order.netPrice | number}} {{'UNIT_CURRENCY' | translate}}
+						</div>
+						<div flex="33">
+							Đã thanh toán: {{totalPaid | number}} {{'UNIT_CURRENCY' | translate}}
+						</div>
+						<div flex="33">
+							Còn lại: {{order.netPrice - totalPaid | number}} {{'UNIT_CURRENCY' | translate}}
+						</div>
+					</div>
+				</md-card-content>
+			</md-card>
+		</div>
+		<div flex="25">
+			<md-card>
+				<md-card-title>
+					<md-card-title-media>
+						<div class="md-media-sm card-media" layout>
+							<md-icon style="color:grey">accessibility</md-icon>
+						</div>
+					</md-card-title-media>
+					<md-card-title-text>
+						<span class="md-title">{{'ORDER_ASSIGNEE_NAME' | translate}}</span>
+						<span class="md-subhead description">{{order.assigneeName}} (id: {{order.assigneeId}})</span>
+					</md-card-title-text>
+  				</md-card-title>
+			</md-card>
+			
+			<md-card>
+				<md-card-title>
+					<md-card-title-media>
+						<div class="md-media-sm card-media" layout>
+							<md-icon style="color:grey">person</md-icon>
+						</div>
+					</md-card-title-media>
+					<md-card-title-text>
+						<span class="md-title">{{'ORDER_CREATED_BY_NAME' | translate}}</span>
+						<span class="md-subhead description">{{order.createdByName}} (id: {{order.createdBy}})</span>
+					</md-card-title-text>
+  				</md-card-title>
+			</md-card>
+			
+			<md-card>
+				<md-card-title>
+					<md-card-title-media>
+						<div class="md-media-sm card-media" layout>
+							<md-icon style="color:grey">date_range</md-icon>
+						</div>
+					</md-card-title-media>
+					<md-card-title-text>
+						<span class="md-title">{{'ORDER_UPDATED_AT' | translate}}</span>
+						<span class="md-subhead description">{{order.updatedAt | date : "dd/MM/y HH:mm:ss"}}</span>
+					</md-card-title-text>
+  				</md-card-title>
+			</md-card>
+			
+			<md-card>
+				<md-card-title>
+					<md-card-title-media>
+						<div class="md-media-sm card-media" layout>
+							<md-icon style="color:grey">date_range</md-icon>
+						</div>
+					</md-card-title-media>
+					<md-card-title-text>
+						<span class="md-title">{{'ORDER_CREATED_AT' | translate}}</span>
+						<span class="md-subhead description">{{order.createdAt | date : "dd/MM/y HH:mm:ss"}}</span>
+					</md-card-title-text>
+  				</md-card-title>
+			</md-card>
+			
+			<md-card>
+				<md-card-title>
+					<md-card-title-media>
+						<div class="md-media-sm card-media" layout>
+							<md-icon style="color:grey">event_note</md-icon>
+						</div>
+					</md-card-title-media>
+					<md-card-title-text>
+						<span class="md-title">{{'ORDER_NOTE' | translate}}</span>
+						<span class="md-subhead description">{{order.note}}</span>
+					</md-card-title-text>
+  				</md-card-title>
+			</md-card>
+		</div>
+	</div>
+</md-content>

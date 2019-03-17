@@ -44,6 +44,12 @@
                 templateUrl: 'template/order/index.view.html',
                 controller: 'IndexOrderController',
                 controllerAs: 'vm'
+            })
+            .state('order-detail', {
+                url: '/order/:id',
+                templateUrl: 'template/order/detail.view.html',
+                controller: 'DetailOrderController',
+                controllerAs: 'vm'
             });
         $translateProvider.useStaticFilesLoader({
             prefix: 'locales/locale-',

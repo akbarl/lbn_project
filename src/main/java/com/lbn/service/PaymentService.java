@@ -10,4 +10,5 @@ public interface PaymentService {
 	public Payment findById(int id);
 	public List<Payment> findAllByOrderId(int orderId);
 	public void deleteByOrderId(int orderId);
+	public Iterable<Payment> findAllOrder();
 }

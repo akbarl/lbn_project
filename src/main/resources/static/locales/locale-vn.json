@@ -39,6 +39,8 @@
   "ORDER_ID" : "Mã đơn hàng",
   "ORDER_ASSIGNEE_ID" : "Mã người thực hiện",
   "ORDER_ASSIGNEE_NAME" : "Người thực hiện",
+  "ORDER_CREATED_AT" : "Ngày tạo",
+  "ORDER_UPDATED_AT" : "Cập nhật lúc",
   "ORDER_CREATED_BY" : "Mã người tạo",
   "ORDER_CREATED_BY_NAME" : "Người tạo",
   "ORDER_CUSTOMER_ID" : "Mã khách hàng",

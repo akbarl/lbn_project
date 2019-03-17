@@ -1,0 +1,31 @@
+<md-dialog add-item-dialog style="width: 100%">
+	<form name="order.form">
+		<md-dialog-content>
+			<md-toolbar>
+				<h2 class="md-toolbar-tools">
+					<span>{{ 'ORDER_UPDATE' | translate }}</span>
+				</h2>
+			</md-toolbar>
+			<md-content layout-padding>
+				<div layout="row" ng-repeat="payment in paymentList">
+					<md-input-container>
+						<label>Giai đoạn 1</label>
+						<input ng-model="payment.percent">
+					</md-input-container>
+					<md-input-container flex-sm>
+						<label>Tình trạng</label>
+						<md-select ng-model="payment.paid">
+							<md-option ng-repeat="status in paymentStatus" value="{{status.value}}">
+								{{status.name}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+					<md-input-container flex-sm>
+						<label>Ngày thanh toán</label>
+						<md-datepicker ng-model="payment.paidDate"></md-datepicker>
+					</md-input-container>
+				</div>
+			</md-content>
+		</md-dialog-content>
+	</form>
+</md-dialog>

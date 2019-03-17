@@ -42,7 +42,11 @@ public class OrderController {
 	@RequestMapping(value = "/order/{id}", method = RequestMethod.GET)
 	public OrderVO getOrderById(@PathVariable("id") int id) {
 		Order order = m_orderService.findById(id);
-		return new OrderVO(m_orderService.findById(id), m_paymentService.findAllByOrderId(order.getId()));
+		OrderVO orderVo = new OrderVO(m_orderService.findById(id), m_paymentService.findAllByOrderId(order.getId()));
+		orderVo.setCustomerName(m_customerService.findById(orderVo.getCustomerId()).getName());
+		orderVo.setAssigneeName(m_userService.findById(orderVo.getAssigneeId()).getFirstname());
+		orderVo.setCreatedByName(m_userService.findById(orderVo.getCreatedBy()).getFirstname());
+		return orderVo;
 	}
 	
 	@RequestMapping(value = "/order", method = RequestMethod.POST)

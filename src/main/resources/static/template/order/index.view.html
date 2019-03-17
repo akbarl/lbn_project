@@ -1,4 +1,4 @@
-  <md-content ng-init="init()"flex layout-padding>
+  <md-content ng-init="init()" flex layout-padding>
       <md-card>
         
         <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
@@ -51,7 +51,7 @@
                 <td md-cell>{{order.deliveredDate | date : "dd/MM/y"}}</td>
                 <td md-cell>{{helpers.getFriendlyNameOfOrderStatus(order.status) | translate}}</td>
                 <td md-cell>
-                   <md-button class="md-icon-button" ng-click="viewOrder()">
+                   <md-button class="md-icon-button" ui-sref="order-detail({ id: order.id })">
                      <md-icon>pageview</md-icon>
                    </md-button>
                    <md-button class="md-icon-button" ng-click="editOrder(order.id)">
