@@ -51,7 +51,7 @@
                 <td md-cell>{{order.deliveredDate | date : "dd/MM/y"}}</td>
                 <td md-cell>{{helpers.getFriendlyNameOfOrderStatus(order.status) | translate}}</td>
                 <td md-cell>
-                   <md-button class="md-icon-button" ui-sref="order-detail({ id: order.id })">
+                   <md-button class="md-icon-button" ui-sref="base.order-detail({ id: order.id })">
                      <md-icon>pageview</md-icon>
                    </md-button>
                    <md-button class="md-icon-button" ng-click="editOrder(order.id)">

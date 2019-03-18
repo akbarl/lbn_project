@@ -2,8 +2,8 @@ app.controller('HomeController', function($rootScope, $scope, $localStorage, Aut
 	
 	$rootScope.title = "DASHBOARD_PAGE";
 	
-	$rootScope.username = $localStorage.currentUser.username;
-	$scope.handeLogout = function() {
+	//$rootScope.username = $localStorage.currentUser.username;
+	$scope.handleLogout = function() {
 		AuthenticationService.processLogout();
 	}
 });

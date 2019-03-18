@@ -10,13 +10,18 @@
  
         // app routes
         $stateProvider
-            .state('home', {
+            .state('base', {
+                abstract: true,
+                templateUrl: 'template/header.html',
+                controller: 'HeaderController'
+            })
+            .state('base.home', {
                 url: '/home',
                 templateUrl: 'template/home/index.view.html',
                 controller: 'HomeController',
                 controllerAs: 'vm'
             })
-            .state('login', {
+            .state('base.login', {
                 url: '/login',
                 templateUrl: 'template/login/index.view.html',
                 controller: 'LoginController',
@@ -27,25 +32,25 @@
                 controller: 'LogoutController',
                 controllerAs: 'vm'
             })
-            .state('me', {
+            .state('base.me', {
                 url: '/me',
                 templateUrl: 'template/me/index.view.html',
                 controller: 'MeController',
                 controllerAs: 'vm'
             })
-            .state('customer', {
+            .state('base.customer', {
                 url: '/customer',
                 templateUrl: 'template/customer/index.view.html',
                 controller: 'CustomerController',
                 controllerAs: 'vm'
             })
-            .state('order', {
+            .state('base.order', {
                 url: '/order',
                 templateUrl: 'template/order/index.view.html',
                 controller: 'IndexOrderController',
                 controllerAs: 'vm'
             })
-            .state('order-detail', {
+            .state('base.order-detail', {
                 url: '/order/:id',
                 templateUrl: 'template/order/detail.view.html',
                 controller: 'DetailOrderController',
