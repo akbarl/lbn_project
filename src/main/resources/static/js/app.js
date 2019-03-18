@@ -21,7 +21,7 @@
                 controller: 'HomeController',
                 controllerAs: 'vm'
             })
-            .state('base.login', {
+            .state('login', {
                 url: '/login',
                 templateUrl: 'template/login/index.view.html',
                 controller: 'LoginController',
