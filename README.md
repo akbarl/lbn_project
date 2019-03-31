@@ -6,3 +6,4 @@
 * Frontend: AngularJS 1
 * Database: MySQL
 * Build tool: Gradle
+* Status: Cancelled (Personal issue)
